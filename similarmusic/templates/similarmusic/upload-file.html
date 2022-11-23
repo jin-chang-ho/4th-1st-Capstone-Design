@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django File Upload</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            font-family: "Roboto";
+        }
+
+        body {
+            background-color: #F5F5F5;
+        }
+
+        form {
+            background-color: #FFFFFF;
+            padding: 25px;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+            margin-top: 25px;
+            padding: 25px;
+            background-color: #FFFFFF;
+        }
+
+        table tr td {
+            padding-top: 15px;
+        }
+    </style>
+    <script type="text/javascript">
+        function getName(value) {
+            var filename = document.getElementById('fileTitle');
+            filename.value = value;
+        }
+    </script>
+</head>
+<body>
+    <h2>음악 파일 업로드</h2>
+    <form action="{% url 'similarmusic:uploadFile' %}" method="POST" enctype="multipart/form-data">
+        <input type="text" id="fileTitle" name="fileTitle" style="display:none">
+        <input type="file" name="uploadedFile" onchange="getName(this.value)">
+        {% csrf_token %}
+        <input type="submit" value="Upload">
+    </form>
+    <table>
+        <caption><h2>업로드 확인</h2></caption>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>File Path</th>
+            <th>Upload Date & Time</th>
+        </tr>
+        {% for file in files %}
+            <tr>
+                <td>{{ file.id }}</td>
+                <td>{{ file.title }}</td>
+                <td>{{ file.uploadedFile.url }}</td>
+                <td>{{ file.dateTimeOfUpload }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <button type = "button" onclick="location.href='/music'">분석 결과 보기</button>
+    <button type = "button" onclick="location.href='/data'">모든 음악 보기</button>
+    <!-- 분석결과 보기 버튼을 누르면 /music으로 연결되는데, 현재 music 페이지는
+    오디오 플레이어 테스트 용이고, 여기에(music페이지에) 추가적으로 compare 결과물과 해당 음원 파일의 오디오 플레이어가
+    재생되는 페이지를 넣을 것입니다. -->
+</body>
+</html>

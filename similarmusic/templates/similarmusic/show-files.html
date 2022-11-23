@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "UTF-8">
+<title>결과 데이터 출력</title>
+</head>
+<body>
+	<div>
+		<h1>{{ filename }} 유사도 순위</h1>
+	</div>
+	<hr>
+	<table>
+		<tbody>
+		<tr><td>첫번째로 유사한 음악 : {{ music1 }}</td><td>첫번째로 유사한 음악 코사인 유사도 : {{ cosine1 }}</td></tr>
+		<tr><td>두번째로 유사한 음악 : {{ music2 }}</td><td>두번째로 유사한 음악 코사인 유사도 : {{ cosine2 }}</td></tr>
+		<tr><td>세번째로 유사한 음악 : {{ music3 }}</td><td>세번째로 유사한 음악 코사인 유사도 : {{ cosine3 }}</td></tr>
+		<tr><td>네번째로 유사한 음악 : {{ music4 }}</td><td>네번째로 유사한 음악 코사인 유사도 : {{ cosine4 }}</td></tr>
+		<tr><td>다섯번째로 유사한 음악 : {{ music5 }}</td><td>다섯번째로 유사한 음악 코사인 유사도 : {{ cosine5 }}</td></tr>
+		</tbody>
+	</table>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+{% for music in music %}
+<h1>{{music.title}}</h1>
+<audio controls><source src="{{music.audio_file.url}}" type="audio/wav"></audio>
+{%endfor%}
+ -->
